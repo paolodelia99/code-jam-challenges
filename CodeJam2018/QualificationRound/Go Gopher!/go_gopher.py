@@ -1,14 +1,16 @@
 import sys
 
+t = int(input())
+
 
 def deploy(A, i, j):
     lookup = set()
     while len(lookup) < 9:
-        print(f'{i} {j}')
+        print(f'{i} {j}',file=sys.stderr)
         sys.stdout.flush()
         ni, nj = map(int, input().split())
         if (ni, nj) == (-1, -1):  # error
-            exit()
+            sys.exit(0)
         if (ni, nj) == (0, 0):  # done
             return True
         lookup.add((ni - i + 1) * 3 + (nj - j + 1))
@@ -25,5 +27,5 @@ def go_gohper():
         i += 3
 
 
-for case in range(int(input())):
+for case in range(0, t):
     go_gohper()
