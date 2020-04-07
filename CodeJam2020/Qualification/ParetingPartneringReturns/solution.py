@@ -1,40 +1,32 @@
 t = int(input())
 
-
-def fits_in_schedule(p_schedule, activities, i):
-    if len(p_schedule) == 0:
-        p_schedule.append(activities[i])
-        return True
-
-    for j in range(0, len(p_schedule)):
-        if p_schedule[j][0] <= activities[i][0] < p_schedule[j][1]:
-            return False
-        elif p_schedule[j][0] < activities[i][1] <= p_schedule[j][1]:
-            return False
-
-    p_schedule.append(activities[i])
-    return True
-
-
 for case in range(1, t + 1):
     n = int(input())
     activities = []
-    c_activities = []
-    j_activities = []
-    res = "C"
+    res = [None] * n
 
     for i in range(n):
-        activities.append(tuple(map(int, input().split())))
+        activities.append(list(map(int, input().split())) + [i])
 
-    c_activities.append(min(activities, key=lambda n: (n[0], -n[1])))
+    activities.sort()
 
-    for i in range(1, len(activities)):
-        if fits_in_schedule(c_activities, activities, i):
-            res += 'C'
-        elif fits_in_schedule(j_activities, activities, i):
-            res += 'J'
+    print(activities)
+
+    # Store the end hours of the given activity assigned to C or J
+    C = 0
+    J = 0
+
+    for s, e, i in activities:
+        if s >= C:
+            res[i] = 'C'
+            C = e
+        elif s >= J:
+            res[i] = 'J'
+            J = e
+
+        if not all(res):
+            ans = "IMPOSSIBLE"
         else:
-            res = 'IMPOSSIBLE'
-            break
+            ans = ''.join(res)
 
-    print('Case #{}: {}'.format(case, res))
+    print('Case #{}: {}'.format(case, ans))
