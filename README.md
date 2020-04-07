@@ -2,7 +2,7 @@
 
 ![Language](https://img.shields.io/badge/language-Python-orange.svg)
 
-here's i grouped all the exercise that i've made for the google code jam, grouping them by years and type of session
+here's i grouped all the exercise and the challenges that I've made for the Google Code Jam, grouping them by years and type of session
 
 ## Code Jam 2018
 
