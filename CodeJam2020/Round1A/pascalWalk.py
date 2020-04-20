@@ -28,4 +28,7 @@ for _ in range(1, t + 1):
     level = find_max_level(n)
     triangle = create_binomial_matrix(level)
 
+    positions = [(1,1)]
+
+
 
